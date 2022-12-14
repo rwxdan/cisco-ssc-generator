@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
+export $(grep -v '^#' .env | xargs)
 
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <collector FQDN> <device FQDN>"
     exit 1
 fi
-
-export $(grep -v '^#' .env | xargs)
 
 (
 cat <<EOF
