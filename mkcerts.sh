@@ -12,6 +12,7 @@ cat <<EOF
 [req]
 distinguished_name = req_distinguished_name
 prompt = no
+
 [req_distinguished_name]
 C = US
 ST = California
@@ -59,6 +60,7 @@ cat <<EOF
 [req]
 distinguished_name = req_distinguished_name
 prompt = no
+
 [req_distinguished_name]
 C = CA
 ST = Ontario
