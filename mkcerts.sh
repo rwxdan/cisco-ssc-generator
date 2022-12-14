@@ -2,10 +2,14 @@
 
 export $(grep -v '^#' .env | xargs)
 
-if [ $# -ne 2 ]; then
-    echo "Usage: $0 <collector FQDN> <device FQDN>"
-    exit 1
-fi
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+RESET="\033[0m"
+
+
+[ $# != 2 ] && echo "Usage: $0 <collector FQDN> <device FQDN>" && exit 1
+
+[ ! -x /usr/bin/openssl ] && echo "${RED}Openssl not found.${RESET}" && exit 1
 
 (
 cat <<EOF
@@ -69,20 +73,32 @@ O = Cisco
 OU = MDT
 CN = ${2}
 EOF
-) > ${2}.cnf 
+) > ${2}.cnf
+
+
+cleanUp () {
+    rm ca.cnf \
+        $1.cnf \
+        $2.cnf \
+        $1.csr \
+        $1.crt \
+        $1.key \
+        $1-ca.key \
+        $2.csr \
+        $2-ca.crt \
+        $2-ca.key
+}
 
 openssl genrsa -des3 -out ${2}.key -passout ${PASS}:admin > /dev/null 2>&1
 openssl req -new -key ${2}.key -out ${2}.csr -config ${2}.cnf -passin ${PASS}:admin
 openssl x509 -req -in ${2}.csr -CA ${1}-ca.crt -CAkey ${1}-ca.key -CAcreateserial -days 365 -out ${2}-${1}-ca.crt > /dev/null 2>&1
-openssl x509 -req -in ${2}.csr -CA ${2}-ca.crt -CAkey ${2}-ca.key -CAcreateserial -days 365 -out ${2}-${2}-ca.crt > /dev/null 2>&1
-rm ca.cnf ${1}.cnf ${2}.cnf ${1}.csr ${1}.crt ${1}.key ${1}-ca.key ${2}.csr ${2}-ca.crt ${2}-ca.key ${2}-${2}-ca.crt 
 
-cat <<EOF
-Configure the trustpoint using the following:
+cleanUp ${1} ${2}
+
+
+echo -e "\n${GREEN}Configure the trustpoint using the following:
 
 crypto pki import <trustpoint name 1> pem terminal password admin
  <paste contents of ${1}-ca.crt>
  <paste contents of ${2}.key>
- <paste contents of ${2}-${1}-ca.crt
-
-EOF
+ <paste contents of ${2}-${1}-ca.crt${RESET}\n"
