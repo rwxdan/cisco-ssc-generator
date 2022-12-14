@@ -68,8 +68,8 @@ CN = ${2}
 EOF
 ) > ${2}.cnf 
 
-openssl genrsa -des3 -out ${2}.key -passout ${PASS}:${ADMIN} > /dev/null 2>&1
-openssl req -new -key ${2}.key -out ${2}.csr -config ${2}.cnf -passin ${PASS}:${ADMIN}
+openssl genrsa -des3 -out ${2}.key -passout ${PASS}:admin > /dev/null 2>&1
+openssl req -new -key ${2}.key -out ${2}.csr -config ${2}.cnf -passin ${PASS}:admin
 openssl x509 -req -in ${2}.csr -CA ${1}-ca.crt -CAkey ${1}-ca.key -CAcreateserial -out ${2}-${1}-ca.crt > /dev/null 2>&1
 rm ca.cnf ${1}.cnf ${2}.cnf ${1}.csr ${1}.crt ${1}.key ${1}-ca.key ${2}.csr ${2}-ca.crt ${2}-ca.key 
 
