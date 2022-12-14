@@ -96,7 +96,7 @@ openssl x509 -req -in ${2}.csr -CA ${1}-ca.crt -CAkey ${1}-ca.key -CAcreateseria
 cleanUp ${1} ${2}
 
 
-echo -e "\n${GREEN}Configure the trustpoint using the following:
+echo "\n${GREEN}Configure the trustpoint using the following:
 
 crypto pki import <trustpoint name 1> pem terminal password admin
  <paste contents of ${1}-ca.crt>
