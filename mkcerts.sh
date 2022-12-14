@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/sh
+
 export $(grep -v '^#' .env | xargs)
 
 if [ $# -ne 2 ]; then
