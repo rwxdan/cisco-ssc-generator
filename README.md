@@ -105,7 +105,7 @@ Use any trustpoint name of your preference in our case we are going to use "trus
 
 ![](./images/image_03.png)
 
-**IMPORTANT**: Make sure you copy from `-----BEGIN CERTIFICATE-----` to `-----END CERTIFICATE-----`
+**IMPORTANT**: Make sure you copy `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----`
 
 ![](./images/image_04.png)
 
