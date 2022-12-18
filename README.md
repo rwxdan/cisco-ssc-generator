@@ -109,7 +109,7 @@ Use any trustpoint name of your preference in our case we are going to use "trus
 
 ![](./images/image_04.png)
 
-At the end you should get an "import succeeded" like this:
+At the end you should get an `import succeeded` like this:
 
 ![](./images/image_05.png)
 
