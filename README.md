@@ -2,7 +2,7 @@
 
 ## Script to generate self-signed certificates to use on Cisco IOS-XE devices. 
 
-We are going to use a Cisco C9800-CL and linux maching for this demo, the certificate should work with any IOS-XE devices.
+We are going to use a Cisco C9800-CL and a linux maching for this demo, the certificate should work with any IOS-XE devices.
 
 This was tested with OpenSSL v3.   
 
