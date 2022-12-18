@@ -75,7 +75,7 @@ openssl req -new -key ${2}.key -out ${2}.csr -config ${2}.cnf -passin ${PASS}:ad
 ```
 
 3. Save the changes.
-4. Run the script and modify the following information "example1.com" and "example2.com", example1.com will represent the CA signing the certificate, and example2.com will be the device certificate (in our case the C9800-CL certificate)
+4. Run the script and modify the following information with your company domain "example1.com" and "example2.com", example1.com will represent the CA signing the certificate, and example2.com will be the device certificate (in our case the C9800-CL certificate)
 
 **The output should looks like this**:
 
@@ -87,13 +87,13 @@ openssl req -new -key ${2}.key -out ${2}.csr -config ${2}.cnf -passin ${PASS}:ad
 crypto pki import <trustpoint name 1> pem terminal password admin
 ```
 
-Use any trustpoint name of your preference in our case we are going to use "truspoint1" and the password admin (as we created earlier)
+Use any trustpoint name of your preference in our case we are going to use "truspoint1" and the password admin (as we've created earlier)
 
 6. Paste the command in your C9800-CL command line, and follow the prompt:
 
 ![](./images/image_02.png)
 
-7. In your linux terminal there are 3 "paste contents" with generated files in the correct order need for you IOS-XE device, in this example:
+7. In your linux terminal there are 3 "paste contents" with the generated files in the expected order needed for you IOS-XE device, in this example we got:
 
 ```
 <paste contents of example1.com-ca.crt>
@@ -109,11 +109,11 @@ Use any trustpoint name of your preference in our case we are going to use "trus
 
 ![](./images/image_04.png)
 
-At the end you should get an `import succeeded` like this:
+At the end, you should get an `import succeeded` like this:
 
 ![](./images/image_05.png)
 
-After all, you can use the certificate for an SSID using web authentication or for the web administration of the IOS-XE device!
+After all, you can use the certificate for a web authentication SSID, or for the web administration of your IOS-XE device!
 
 
 
