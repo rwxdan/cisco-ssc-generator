@@ -66,11 +66,11 @@ distinguished_name = req_distinguished_name
 prompt = no
 
 [req_distinguished_name]
-C = CA
-ST = Ontario
-L = Ottawa
+C = US
+ST = California
+L = San Jose
 O = Cisco
-OU = MDT
+OU = MDTG
 CN = ${2}
 EOF
 ) > ${2}.cnf
